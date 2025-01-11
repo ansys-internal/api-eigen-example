@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; API Eigen Example</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="_static/css/ansys_sphinx_theme.css?v=77703c5e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="_static/documentation_options.js?v=f539c95a"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/thebelab-helper.js"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=49e1bf35"></script>
+    <script src="_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://www.ansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ansys_logo_transparent_black.png" class="logo__image only-light" alt="API Eigen Example - Home"/>
+    <script>document.write(`<img src="_static/ansys_logo_transparent_white.png" class="logo__image only-dark" alt="API Eigen Example - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="users_guide/index.html">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="contributing.html">
+    Contributing
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="users_guide/index.html">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="contributing.html">
+    Contributing
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Index</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-rest/client.html#ansys.eigen.python.rest.client.DemoRESTClient.add">add() (ansys.eigen.python.rest.client.DemoRESTClient method)</a>
+</li>
+      <li><a href="api/python-grpc/client.html#ansys.eigen.python.grpc.client.DemoGRPCClient.add_matrices">add_matrices() (ansys.eigen.python.grpc.client.DemoGRPCClient method)</a>
+</li>
+      <li><a href="api/python-grpc/client.html#ansys.eigen.python.grpc.client.DemoGRPCClient.add_vectors">add_vectors() (ansys.eigen.python.grpc.client.DemoGRPCClient method)</a>
+</li>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.GRPCDemoServicer.AddMatrices">AddMatrices() (ansys.eigen.python.grpc.server.GRPCDemoServicer method)</a>
+</li>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.GRPCDemoServicer.AddVectors">AddVectors() (ansys.eigen.python.grpc.server.GRPCDemoServicer method)</a>
+</li>
+      <li>
+    ansys.eigen.python.grpc.client
+
+      <ul>
+        <li><a href="api/python-grpc/client.html#module-ansys.eigen.python.grpc.client">module</a>
+</li>
+      </ul></li>
+      <li>
+    ansys.eigen.python.grpc.server
+
+      <ul>
+        <li><a href="api/python-grpc/server.html#module-ansys.eigen.python.grpc.server">module</a>
+</li>
+      </ul></li>
+      <li>
+    ansys.eigen.python.rest.client
+
+      <ul>
+        <li><a href="api/python-rest/client.html#module-ansys.eigen.python.rest.client">module</a>
+</li>
+      </ul></li>
+      <li>
+    ansys.eigen.python.rest.restdb.db
+
+      <ul>
+        <li><a href="api/python-rest/restdb.html#module-ansys.eigen.python.rest.restdb.db">module</a>
+</li>
+      </ul></li>
+      <li>
+    ansys.eigen.python.rest.server
+
+      <ul>
+        <li><a href="api/python-rest/server.html#module-ansys.eigen.python.rest.server">module</a>
+</li>
+      </ul></li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigenE">ansys::eigen (C++ type)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen12add_matricesERKN5Eigen8MatrixXdERKN5Eigen8MatrixXdE">ansys::eigen::add_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen11add_vectorsERKN5Eigen8VectorXdERKN5Eigen8VectorXdE">ansys::eigen::add_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen17multiply_matricesERKN5Eigen8MatrixXdERKN5Eigen8MatrixXdE">ansys::eigen::multiply_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen16multiply_vectorsERKN5Eigen8VectorXdERKN5Eigen8VectorXdE">ansys::eigen::multiply_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen11read_matrixERKNSt6stringE">ansys::eigen::read_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen11read_vectorERKNSt6stringE">ansys::eigen::read_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen12write_matrixERKN5Eigen8MatrixXdE">ansys::eigen::write_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/eigen.html#_CPPv4N5ansys5eigen12write_vectorERKN5Eigen8VectorXdE">ansys::eigen::write_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6clientE">ansys::grpc::client (C++ type)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClientE">ansys::grpc::client::GRPCClient (C++ class)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient10_debug_logE">ansys::grpc::client::GRPCClient::_debug_log (C++ member)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient5_stubE">ansys::grpc::client::GRPCClient::_stub (C++ member)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient12add_matricesERKNSt6vectorINSt6vectorIdEEEERKNSt6vectorINSt6vectorIdEEEE">ansys::grpc::client::GRPCClient::add_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient11add_vectorsERKNSt6vectorIdEERKNSt6vectorIdEE">ansys::grpc::client::GRPCClient::add_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient25define_matstream_metadataEPN4grpc13ClientContextERKNSt6vectorINSt6vectorIdEEEERKNSt6vectorINSt6vectorIdEEEE">ansys::grpc::client::GRPCClient::define_matstream_metadata (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient25define_vecstream_metadataEPN4grpc13ClientContextERKNSt6vectorIdEERKNSt6vectorIdEE">ansys::grpc::client::GRPCClient::define_vecstream_metadata (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient18deserialize_matrixERKNSt6stringEKiKiN8grpcdemo8DataTypeE">ansys::grpc::client::GRPCClient::deserialize_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient18deserialize_vectorERKNSt6stringEKiN8grpcdemo8DataTypeE">ansys::grpc::client::GRPCClient::deserialize_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient11flip_vectorERKNSt6vectorIdEE">ansys::grpc::client::GRPCClient::flip_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient10GRPCClientEKNSt6stringEKiKb">ansys::grpc::client::GRPCClient::GRPCClient (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient17multiply_matricesERKNSt6vectorINSt6vectorIdEEEERKNSt6vectorINSt6vectorIdEEEE">ansys::grpc::client::GRPCClient::multiply_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient16multiply_vectorsERKNSt6vectorIdEERKNSt6vectorIdEE">ansys::grpc::client::GRPCClient::multiply_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient14receive_matrixERNSt10unique_ptrIN4grpc18ClientReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEEEPN4grpc13ClientContextE">ansys::grpc::client::GRPCClient::receive_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient14receive_vectorERNSt10unique_ptrIN4grpc18ClientReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEEEPN4grpc13ClientContextE">ansys::grpc::client::GRPCClient::receive_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient16request_greetingERKNSt6stringE">ansys::grpc::client::GRPCClient::request_greeting (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient11send_matrixERNSt10unique_ptrIN4grpc18ClientReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEEERKNSt6vectorINSt6vectorIdEEEERKNSt6vectorIiEE">ansys::grpc::client::GRPCClient::send_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient11send_vectorERNSt10unique_ptrIN4grpc18ClientReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEEERKNSt6vectorIdEERKNSt6vectorIiEE">ansys::grpc::client::GRPCClient::send_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient16serialize_matrixERKNSt6vectorINSt6vectorIdEEEEKiKi">ansys::grpc::client::GRPCClient::serialize_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient16serialize_vectorERKNSt6vectorIdEEKiKi">ansys::grpc::client::GRPCClient::serialize_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient19set_matrix_metadataEPN4grpc13ClientContextERKNSt6vectorINSt6vectorIdEEEERKNSt6stringE">ansys::grpc::client::GRPCClient::set_matrix_metadata (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClient19set_vector_metadataEPN4grpc13ClientContextERKNSt6vectorIdEERKNSt6stringE">ansys::grpc::client::GRPCClient::set_vector_metadata (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/client.html#_CPPv4N5ansys4grpc6client10GRPCClientD0Ev">ansys::grpc::client::GRPCClient::~GRPCClient (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/server.html#_CPPv4N5ansys4grpc6serverE">ansys::grpc::server (C++ type)</a>
+</li>
+      <li><a href="api/cpp-grpc/server.html#_CPPv4N5ansys4grpc6server10GRPCServerE">ansys::grpc::server::GRPCServer (C++ class)</a>
+</li>
+      <li><a href="api/cpp-grpc/server.html#_CPPv4N5ansys4grpc6server10GRPCServer7_serverE">ansys::grpc::server::GRPCServer::_server (C++ member)</a>
+</li>
+      <li><a href="api/cpp-grpc/server.html#_CPPv4N5ansys4grpc6server10GRPCServer10GRPCServerEv">ansys::grpc::server::GRPCServer::GRPCServer (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/server.html#_CPPv4N5ansys4grpc6server10GRPCServer5serveEKNSt6stringEKiKb">ansys::grpc::server::GRPCServer::serve (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/server.html#_CPPv4N5ansys4grpc6server10GRPCServerD0Ev">ansys::grpc::server::GRPCServer::~GRPCServer (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7serviceE">ansys::grpc::service (C++ type)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCServiceE">ansys::grpc::service::GRPCService (C++ class)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService10_debug_logE">ansys::grpc::service::GRPCService::_debug_log (C++ member)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService11AddMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE">ansys::grpc::service::GRPCService::AddMatrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService10AddVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE">ansys::grpc::service::GRPCService::AddVectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService18deserialize_matrixERKNSt6stringEKiKiN8grpcdemo8DataTypeE">ansys::grpc::service::GRPCService::deserialize_matrix (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService18deserialize_vectorERKNSt6stringEKiN8grpcdemo8DataTypeE">ansys::grpc::service::GRPCService::deserialize_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService10FlipVectorEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE">ansys::grpc::service::GRPCService::FlipVector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService11GRPCServiceEKb">ansys::grpc::service::GRPCService::GRPCService (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService16MultiplyMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE">ansys::grpc::service::GRPCService::MultiplyMatrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService15MultiplyVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE">ansys::grpc::service::GRPCService::MultiplyVectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService16receive_matricesEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextE">ansys::grpc::service::GRPCService::receive_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService15receive_vectorsEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextE">ansys::grpc::service::GRPCService::receive_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService8SayHelloEPN4grpc13ServerContextEPKN8grpcdemo12HelloRequestEPN8grpcdemo10HelloReplyE">ansys::grpc::service::GRPCService::SayHello (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService11send_matrixEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextERKN5Eigen8MatrixXdE">ansys::grpc::service::GRPCService::send_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService11send_vectorEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextERKN5Eigen8VectorXdE">ansys::grpc::service::GRPCService::send_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService16serialize_matrixERKN5Eigen8MatrixXdEKiKi">ansys::grpc::service::GRPCService::serialize_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCService16serialize_vectorERKN5Eigen8VectorXdEKiKi">ansys::grpc::service::GRPCService::serialize_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-grpc/service.html#_CPPv4N5ansys4grpc7service11GRPCServiceD0Ev">ansys::grpc::service::GRPCService::~GRPCService (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6clientE">ansys::rest::client (C++ type)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClientE">ansys::rest::client::EigenClient (C++ class)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient5_connE">ansys::rest::client::EigenClient::_conn (C++ member)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient10_debug_logE">ansys::rest::client::EigenClient::_debug_log (C++ member)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient12add_matricesERKNSt6vectorINSt6vectorIdEEEERKNSt6vectorINSt6vectorIdEEEE">ansys::rest::client::EigenClient::add_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient11add_vectorsERKNSt6vectorIdEERKNSt6vectorIdEE">ansys::rest::client::EigenClient::add_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient11EigenClientERKNSt6stringERKNSt6stringERKNSt6stringEKiKb">ansys::rest::client::EigenClient::EigenClient (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient14json_to_matrixERKN4Json5ValueE">ansys::rest::client::EigenClient::json_to_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient14json_to_vectorERKN4Json5ValueE">ansys::rest::client::EigenClient::json_to_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient14matrix_to_jsonERKNSt6vectorINSt6vectorIdEEEE">ansys::rest::client::EigenClient::matrix_to_json (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient17multiply_matricesERKNSt6vectorINSt6vectorIdEEEERKNSt6vectorINSt6vectorIdEEEE">ansys::rest::client::EigenClient::multiply_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient16multiply_vectorsERKNSt6vectorIdEERKNSt6vectorIdEE">ansys::rest::client::EigenClient::multiply_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient11post_matrixERKNSt6vectorINSt6vectorIdEEEE">ansys::rest::client::EigenClient::post_matrix (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient11post_vectorERKNSt6vectorIdEE">ansys::rest::client::EigenClient::post_vector (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient16request_greetingEv">ansys::rest::client::EigenClient::request_greeting (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClient14vector_to_jsonERKNSt6vectorIdEE">ansys::rest::client::EigenClient::vector_to_json (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client11EigenClientD0Ev">ansys::rest::client::EigenClient::~EigenClient (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/client.html#_CPPv4N5ansys4rest6client14print_responseERKN10RestClient8ResponseE">ansys::rest::client::print_response (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2dbE">ansys::rest::db (C++ type)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db8callbackEPviPPcPPc">ansys::rest::db::callback (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db13dbtype_to_strERK7DbTypes">ansys::rest::db::dbtype_to_str (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db7DbTypesE">ansys::rest::db::DbTypes (C++ enum)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db7DbTypes6MATRIXE">ansys::rest::db::DbTypes::MATRIX (C++ enumerator)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db7DbTypes6VECTORE">ansys::rest::db::DbTypes::VECTOR (C++ enumerator)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db6RestDbE">ansys::rest::db::RestDb (C++ class)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db6RestDb3_dbE">ansys::rest::db::RestDb::_db (C++ member)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db6RestDb13initialize_dbEv">ansys::rest::db::RestDb::initialize_db (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db6RestDb13load_resourceERK7DbTypesRKi">ansys::rest::db::RestDb::load_resource (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db6RestDb6RestDbEv">ansys::rest::db::RestDb::RestDb (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db6RestDb14store_resourceERK7DbTypesRKNSt6stringE">ansys::rest::db::RestDb::store_resource (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/restdb.html#_CPPv4N5ansys4rest2db6RestDbD0Ev">ansys::rest::db::RestDb::~RestDb (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6serverE">ansys::rest::server (C++ type)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServerE">ansys::rest::server::RestServer (C++ class)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer4_appE">ansys::rest::server::RestServer::_app (C++ member)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer3_dbE">ansys::rest::server::RestServer::_db (C++ member)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer12add_matricesEii">ansys::rest::server::RestServer::add_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer11add_vectorsEii">ansys::rest::server::RestServer::add_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer7get_appEv">ansys::rest::server::RestServer::get_app (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer27matrix_operations_endpointsEv">ansys::rest::server::RestServer::matrix_operations_endpoints (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer25matrix_resource_endpointsEv">ansys::rest::server::RestServer::matrix_resource_endpoints (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer17multiply_matricesEii">ansys::rest::server::RestServer::multiply_matrices (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer16multiply_vectorsEii">ansys::rest::server::RestServer::multiply_vectors (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer10RestServerEv">ansys::rest::server::RestServer::RestServer (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer5serveEKiKbKN4crow8LogLevelE">ansys::rest::server::RestServer::serve (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer27vector_operations_endpointsEv">ansys::rest::server::RestServer::vector_operations_endpoints (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServer25vector_resource_endpointsEv">ansys::rest::server::RestServer::vector_resource_endpoints (C++ function)</a>
+</li>
+      <li><a href="api/cpp-rest/server.html#_CPPv4N5ansys4rest6server10RestServerD0Ev">ansys::rest::server::RestServer::~RestServer (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.check_data_type">check_data_type() (in module ansys.eigen.python.grpc.server)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.check_size">check_size() (in module ansys.eigen.python.grpc.server)</a>
+</li>
+      <li><a href="api/python-rest/server.html#ansys.eigen.python.rest.server.create_app">create_app() (in module ansys.eigen.python.rest.server)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/client.html#ansys.eigen.python.grpc.client.DemoGRPCClient">DemoGRPCClient (class in ansys.eigen.python.grpc.client)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-rest/client.html#ansys.eigen.python.rest.client.DemoRESTClient">DemoRESTClient (class in ansys.eigen.python.rest.client)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/client.html#ansys.eigen.python.grpc.client.DemoGRPCClient.flip_vector">flip_vector() (ansys.eigen.python.grpc.client.DemoGRPCClient method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.GRPCDemoServicer.FlipVector">FlipVector() (ansys.eigen.python.grpc.server.GRPCDemoServicer method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-rest/client.html#ansys.eigen.python.rest.client.DemoRESTClient.get_connection_details">get_connection_details() (ansys.eigen.python.rest.client.DemoRESTClient method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-rest/restdb.html#ansys.eigen.python.rest.restdb.db.get_db">get_db() (in module ansys.eigen.python.rest.restdb.db)</a>
+</li>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.GRPCDemoServicer">GRPCDemoServicer (class in ansys.eigen.python.grpc.server)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-rest/restdb.html#ansys.eigen.python.rest.restdb.db.init_app_db">init_app_db() (in module ansys.eigen.python.rest.restdb.db)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="api/python-grpc/client.html#module-ansys.eigen.python.grpc.client">ansys.eigen.python.grpc.client</a>
+</li>
+        <li><a href="api/python-grpc/server.html#module-ansys.eigen.python.grpc.server">ansys.eigen.python.grpc.server</a>
+</li>
+        <li><a href="api/python-rest/client.html#module-ansys.eigen.python.rest.client">ansys.eigen.python.rest.client</a>
+</li>
+        <li><a href="api/python-rest/restdb.html#module-ansys.eigen.python.rest.restdb.db">ansys.eigen.python.rest.restdb.db</a>
+</li>
+        <li><a href="api/python-rest/server.html#module-ansys.eigen.python.rest.server">ansys.eigen.python.rest.server</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-rest/client.html#ansys.eigen.python.rest.client.DemoRESTClient.multiply">multiply() (ansys.eigen.python.rest.client.DemoRESTClient method)</a>
+</li>
+      <li><a href="api/python-grpc/client.html#ansys.eigen.python.grpc.client.DemoGRPCClient.multiply_matrices">multiply_matrices() (ansys.eigen.python.grpc.client.DemoGRPCClient method)</a>
+</li>
+      <li><a href="api/python-grpc/client.html#ansys.eigen.python.grpc.client.DemoGRPCClient.multiply_vectors">multiply_vectors() (ansys.eigen.python.grpc.client.DemoGRPCClient method)</a>
+</li>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.GRPCDemoServicer.MultiplyMatrices">MultiplyMatrices() (ansys.eigen.python.grpc.server.GRPCDemoServicer method)</a>
+</li>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.GRPCDemoServicer.MultiplyVectors">MultiplyVectors() (ansys.eigen.python.grpc.server.GRPCDemoServicer method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/client.html#ansys.eigen.python.grpc.client.DemoGRPCClient.request_greeting">request_greeting() (ansys.eigen.python.grpc.client.DemoGRPCClient method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.GRPCDemoServicer.SayHello">SayHello() (ansys.eigen.python.grpc.server.GRPCDemoServicer method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/python-grpc/server.html#ansys.eigen.python.grpc.server.serve">serve() (in module ansys.eigen.python.grpc.server)</a>
+</li>
+      <li><a href="api/python-rest/client.html#ansys.eigen.python.rest.client.DemoRESTClient.subtract">subtract() (ansys.eigen.python.rest.client.DemoRESTClient method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "_static/search.json";
+</script>
+
+
+<script src="_static/js/search.js"></script>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.2.4. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

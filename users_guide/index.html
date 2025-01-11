@@ -1,0 +1,899 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>User’s guide &#8212; API Eigen Example</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=77703c5e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../_static/documentation_options.js?v=f539c95a"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'users_guide/index';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API reference" href="../api/index.html" />
+    <link rel="prev" title="Getting started" href="../getting_started/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://www.ansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/ansys_logo_transparent_black.png" class="logo__image only-light" alt="API Eigen Example - Home"/>
+    <script>document.write(`<img src="../_static/ansys_logo_transparent_white.png" class="logo__image only-dark" alt="API Eigen Example - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">User’s guide</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="user-s-guide">
+<span id="user-guide"></span><h1>User’s guide<a class="headerlink" href="#user-s-guide" title="Link to this heading">#</a></h1>
+<p>This guide describes how to use the API Eigen Example package and its modules
+and components.</p>
+<section id="understanding-the-api-eigen-example-python-module">
+<h2>Understanding the API Eigen Example Python module<a class="headerlink" href="#understanding-the-api-eigen-example-python-module" title="Link to this heading">#</a></h2>
+<p>The``ansys.eigen.python`` package contains the necessary objects for testing the API REST
+and gRPC communication protocols, which are implemented in Python. It also includes two
+additional Python packages:</p>
+<ul class="simple">
+<li><p>REST package: <code class="docutils literal notranslate"><span class="pre">ansys.eigen.python.rest</span></code></p></li>
+<li><p>gRPC package: <code class="docutils literal notranslate"><span class="pre">ansys.eigen.python.grpc</span></code></p></li>
+</ul>
+<p>Each of these packages contains two key modules for performing the demos: <code class="docutils literal notranslate"><span class="pre">client</span></code>
+and <code class="docutils literal notranslate"><span class="pre">server</span></code>. This section is divided into REST and gRPC package subsections.</p>
+<section id="the-api-rest-eigen-example-python-module">
+<h3>The API REST Eigen Example Python module<a class="headerlink" href="#the-api-rest-eigen-example-python-module" title="Link to this heading">#</a></h3>
+<p>Import the API REST Python server and client with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ansys.eigen.python.rest.server</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rest_server</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ansys.eigen.python.rest.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rest_client</span>
+</pre></div>
+</div>
+<p>The API REST Python server is a Flask app that contains a SQLite database (DB). You can easily
+deploy this server by running commands in the terminal. If you are located at the root directory
+of the repository, you can deploy this version of the server with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">FLASK_APP</span><span class="o">=</span><span class="s2">&quot;src/ansys/eigen/python/rest/server.py&quot;</span>
+flask<span class="w"> </span>run
+</pre></div>
+</div>
+<p>While the preceding commands deploy the server with default parameters, you can deploy it manually by
+calling the <code class="docutils literal notranslate"><span class="pre">create_app()</span></code> method to return the Flask app and then run it using the <code class="docutils literal notranslate"><span class="pre">app.run()</span></code>
+method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">rest_server</span><span class="o">.</span><span class="n">create_app</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The Python client contains a class called <code class="docutils literal notranslate"><span class="pre">DemoRESTClient</span></code> that provides tools for interacting
+directly with the deployed server. For example, to create an API REST client for interacting with
+the previously deployed server, you would run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">rest_client</span><span class="o">.</span><span class="n">DemoRESTClient</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The client is then made available to perform operations such as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vec_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">vec_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="n">vec_add</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vec_1</span><span class="p">,</span> <span class="n">vec_2</span><span class="p">)</span>             <span class="c1"># &gt;&gt;&gt; numpy.ndarray([ 6.0,  6.0,  5.0,  4.0])</span>
+<span class="n">vec_sub</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">subtract</span><span class="p">(</span><span class="n">vec_1</span><span class="p">,</span> <span class="n">vec_2</span><span class="p">)</span>        <span class="c1"># &gt;&gt;&gt; numpy.ndarray([-4.0, -2.0,  1.0,  4.0])</span>
+<span class="n">vec_mul</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">vec_1</span><span class="p">,</span> <span class="n">vec_2</span><span class="p">)</span>        <span class="c1"># &gt;&gt;&gt; 19 (== dot product of vec_1 and vec_2)</span>
+</pre></div>
+</div>
+</section>
+<section id="the-api-grpc-eigen-example-python-module">
+<h3>The API gRPC Eigen Example Python module<a class="headerlink" href="#the-api-grpc-eigen-example-python-module" title="Link to this heading">#</a></h3>
+<p>Import the API gRPC Python server and client with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ansys.eigen.python.grpc.server</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">grpc_server</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ansys.eigen.python.grpc.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">grpc_client</span>
+</pre></div>
+</div>
+<p>The API gRPC Python server is a standalone gRPC app with no DB. You can easily deploy this server
+by running commands in the terminal. If you are located at the root directory of the repository, you
+can deploy this version of the server with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>src/ansys/eigen/python/grpc/server.py
+</pre></div>
+</div>
+<p>While the preceding command deploys the server with default parameters, you can deploy it manually by
+calling the <code class="docutils literal notranslate"><span class="pre">serve()</span></code> method inside the module:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grpc_server</span><span class="o">.</span><span class="n">serve</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The Python client contains a class called <code class="docutils literal notranslate"><span class="pre">DemoGRPCClient</span></code> that provides tools for interacting
+directly with the deployed server. For example, to create an API gRPC client for interacting with
+the previously deployed server, you would run:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cli</span> <span class="o">=</span> <span class="n">grpc_client</span><span class="o">.</span><span class="n">DemoGRPCClient</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">50051</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The client is then made available to perform operations such as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vec_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">vec_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="n">cli</span><span class="o">.</span><span class="n">request_greeting</span><span class="p">(</span><span class="s2">&quot;James&quot;</span><span class="p">)</span>                  <span class="c1"># &gt;&gt;&gt; Server answering  &quot;Hello, James!&quot;</span>
+<span class="n">vec_add</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">vec_1</span><span class="p">,</span> <span class="n">vec_2</span><span class="p">)</span>        <span class="c1"># &gt;&gt;&gt; numpy.ndarray([ 6.0,  6.0,  5.0,  4.0])</span>
+<span class="n">vec_mul</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">multiply_vectors</span><span class="p">(</span><span class="n">vec_1</span><span class="p">,</span> <span class="n">vec_2</span><span class="p">)</span>   <span class="c1"># &gt;&gt;&gt; 19 (== dot product of vec_1 and vec_2)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="understanding-the-api-eigen-example-c-module">
+<h2>Understanding the API Eigen Example C++ module<a class="headerlink" href="#understanding-the-api-eigen-example-c-module" title="Link to this heading">#</a></h2>
+<p>The``ansys.eigen.python`` package also includes two C++ projects, which are C++ implementations of the
+previously explained Python packages:</p>
+<ul class="simple">
+<li><p>C++ REST projects: <code class="docutils literal notranslate"><span class="pre">src/ansys/eigen/cpp/rest</span></code></p></li>
+<li><p>C++ gRPC projects: <code class="docutils literal notranslate"><span class="pre">src/ansys/eigen/cpp/grpc</span></code></p></li>
+</ul>
+<p>Each of these C++ packages contains two key modules for performing the demos: <code class="docutils literal notranslate"><span class="pre">client</span></code> and <code class="docutils literal notranslate"><span class="pre">server</span></code>.
+This section is divided into REST and gRPC project subsections.</p>
+<section id="the-api-rest-eigen-example-c-projects">
+<h3>The API REST Eigen Example C++ projects<a class="headerlink" href="#the-api-rest-eigen-example-c-projects" title="Link to this heading">#</a></h3>
+<p>First you must install the projects as per the instructions in <a class="reference internal" href="../getting_started/index.html#getting-started"><span class="std std-ref">Getting started</span></a>.</p>
+<p>Once projects are installed, run these <code class="docutils literal notranslate"><span class="pre">include</span></code> commands:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/rest/EigenClient.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/rest/RestServer.hpp&gt;</span>
+</pre></div>
+</div>
+<p>The API REST C++ server is a CrowCpp app that contains a SQLite DB. You can easily deploy this server by running
+commands in the terminal.</p>
+<p>If you create a simple <code class="docutils literal notranslate"><span class="pre">server.cpp</span></code> file, you can do the following:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/rest/RestServer.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// Let us instantiate our server</span>
+<span class="w">   </span><span class="n">ansys</span><span class="o">::</span><span class="n">rest</span><span class="o">::</span><span class="n">server</span><span class="o">::</span><span class="n">RestServer</span><span class="w"> </span><span class="n">server</span><span class="p">{};</span>
+
+<span class="w">   </span><span class="c1">// Start serving!</span>
+<span class="w">   </span><span class="n">server</span><span class="p">.</span><span class="n">serve</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once the library is installed, you can compile the <code class="docutils literal notranslate"><span class="pre">server.cpp</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myServer<span class="w"> </span>server.cpp<span class="w"> </span>-lapi_eigen_example_rest_server
+</pre></div>
+</div>
+<p>You can then run the executable that results from the compilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myServer
+</pre></div>
+</div>
+<p>You see these messages as your server is being deployed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;<span class="w"> </span>Opened<span class="w"> </span>database<span class="w"> </span>successfully.
+&gt;&gt;&gt;<span class="w"> </span>RestDb<span class="w"> </span>object<span class="w"> </span>created.
+&gt;&gt;&gt;<span class="w"> </span>DB<span class="w"> </span>tables<span class="w"> </span>created<span class="w"> </span>successfully.
+&gt;&gt;&gt;<span class="w"> </span><span class="o">(</span><span class="m">2022</span>-05-13<span class="w"> </span><span class="m">08</span>:48:54<span class="o">)</span><span class="w"> </span><span class="o">[</span>INFO<span class="w">    </span><span class="o">]</span><span class="w"> </span>REST<span class="w"> </span>Server<span class="w"> </span>object<span class="w"> </span>instantiated.
+&gt;&gt;&gt;<span class="w"> </span><span class="o">(</span><span class="m">2022</span>-05-13<span class="w"> </span><span class="m">08</span>:48:54<span class="o">)</span><span class="w"> </span><span class="o">[</span>INFO<span class="w">    </span><span class="o">]</span><span class="w"> </span>Crow/1.0<span class="w"> </span>server<span class="w"> </span>is<span class="w"> </span>running<span class="w"> </span>at<span class="w"> </span>http://0.0.0.0:18080<span class="w"> </span>using<span class="w"> </span><span class="m">16</span><span class="w"> </span>threads
+&gt;&gt;&gt;<span class="w"> </span><span class="o">(</span><span class="m">2022</span>-05-13<span class="w"> </span><span class="m">08</span>:48:54<span class="o">)</span><span class="w"> </span><span class="o">[</span>INFO<span class="w">    </span><span class="o">]</span><span class="w"> </span>Call<span class="w"> </span><span class="sb">`</span>app.loglevel<span class="o">(</span>crow::LogLevel::Warning<span class="o">)</span><span class="sb">`</span><span class="w"> </span>to<span class="w"> </span>hide<span class="w"> </span>Info<span class="w"> </span>level<span class="w"> </span>logs.
+</pre></div>
+</div>
+<p>While the preceding command deploys the server with default parameters, you can deploy it with your own custom
+parameters by providing optional inputs in the <code class="docutils literal notranslate"><span class="pre">serve()</span></code> method.</p>
+<p>The C++ client contains a class called <code class="docutils literal notranslate"><span class="pre">EigenClient</span></code> that provides tools for interacting
+directly with the deployed server. For example, to create an API REST client for interacting with
+the previously deployed server, you could write the following code snippet in a new C++ file (for example, <code class="docutils literal notranslate"><span class="pre">client.cpp</span></code>)
+and then call it:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/rest/EigenClient.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Deploying the client</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Instantiate an EigenClient</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ansys</span><span class="o">::</span><span class="n">rest</span><span class="o">::</span><span class="n">client</span><span class="o">::</span><span class="n">EigenClient</span><span class="p">(</span><span class="s">&quot;http://0.0.0.0:18080&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// REQUESTING GREETING - A.K.A &quot;Hello World&quot;</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Let us request a greeting!</span>
+<span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">request_greeting</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Performing vector operations</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Let us create some reference vectors</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">{</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// Let us add them</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span><span class="w"> </span><span class="n">vec2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Exit successfully</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The client then deals with a vector addition operation via REST API interaction
+with the server, apart from requesting a greeting.</p>
+<p>You compile the client with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myClientApp<span class="w"> </span>client.cpp<span class="w"> </span>-lapi_eigen_example_rest_client
+</pre></div>
+</div>
+<p>You then run the executable that results from the compilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myClientApp
+</pre></div>
+</div>
+<p>Enjoy creating your own apps.</p>
+</section>
+<section id="the-api-grpc-eigen-example-c-projects">
+<h3>The API gRPC Eigen Example C++ projects<a class="headerlink" href="#the-api-grpc-eigen-example-c-projects" title="Link to this heading">#</a></h3>
+<p>First you must install the projects as per the instructions in <a class="reference internal" href="../getting_started/index.html#getting-started"><span class="std std-ref">Getting started</span></a>.</p>
+<p>Once projects are installed, run these <code class="docutils literal notranslate"><span class="pre">include</span></code> commands:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/grpc/GRPCClient.hpp&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/grpc/GRPCServer.hpp&gt;</span>
+</pre></div>
+</div>
+<p>The API gRPC C++ server is a standalone gRPC app. You can easily deploy this server by running
+commands in the terminal.</p>
+<p>If you create a simple <code class="docutils literal notranslate"><span class="pre">server.cpp</span></code> file, you can do the following:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/grpc/GRPCServer.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// Let us instantiate our server</span>
+<span class="w">   </span><span class="n">ansys</span><span class="o">::</span><span class="n">grpc</span><span class="o">::</span><span class="n">server</span><span class="o">::</span><span class="n">GRPCServer</span><span class="w"> </span><span class="n">server</span><span class="p">{};</span>
+
+<span class="w">   </span><span class="c1">// Start serving!</span>
+<span class="w">   </span><span class="n">server</span><span class="p">.</span><span class="n">serve</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Once the library is installed, you can compile the <code class="docutils literal notranslate"><span class="pre">server.cpp</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myServer<span class="w"> </span>server.cpp<span class="w"> </span>-lapi_eigen_example_grpc_server
+</pre></div>
+</div>
+<p>You then run the executable that results from the compilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myServer
+</pre></div>
+</div>
+<p>You see these messages as your server is being deployed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;<span class="w"> </span>Instantiating<span class="w"> </span>our<span class="w"> </span>server...
+&gt;&gt;&gt;<span class="w"> </span>GRPCService<span class="w"> </span>object<span class="w"> </span>created.
+&gt;&gt;&gt;<span class="w"> </span>Server<span class="w"> </span>listening<span class="w"> </span>on<span class="w"> </span><span class="m">0</span>.0.0.0:50000
+</pre></div>
+</div>
+<p>While the preceding command deploys the server with default parameters, you can deploy it with your own custom
+parameters by providing optional inputs in the <code class="docutils literal notranslate"><span class="pre">serve()</span></code> method.</p>
+<p>The C++ client contains a class called <code class="docutils literal notranslate"><span class="pre">GRPCClient</span></code> that provides tools for interacting
+directly with the server. For example, if you wanted to create an API gRPC client for interacting with
+the previously deployed server, you would write the following code snippet in a new C++ file (for example, <code class="docutils literal notranslate"><span class="pre">client.cpp</span></code>)
+and then call it:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/grpc/GRPCClient.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Deploying the client</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Instantiate a GRPCClient</span>
+<span class="w">    </span><span class="n">ansys</span><span class="o">::</span><span class="n">grpc</span><span class="o">::</span><span class="n">client</span><span class="o">::</span><span class="n">GRPCClient</span><span class="w"> </span><span class="n">client</span><span class="p">{</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">50000</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// REQUESTING GREETING - A.K.A &quot;Hello World&quot;</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Let us request a greeting!</span>
+<span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">request_greeting</span><span class="p">(</span><span class="s">&quot;Michael&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Performing vector operations</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Let us create some reference vectors</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">{</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// Let us add them</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span><span class="w"> </span><span class="n">vec2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Exit successfully</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The client then deals with a vector addition operation via gRPC API interaction
+with the server, apart from requesting a greeting.</p>
+<p>You compile the client app with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myClientApp<span class="w"> </span>client.cpp<span class="w"> </span>-lapi_eigen_example_grpc_client
+</pre></div>
+</div>
+<p>You then run the executable that results from the recompilation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myClientApp
+</pre></div>
+</div>
+<p>You see these messages as your server is being deployed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>GRPCClient<span class="w"> </span>object<span class="w"> </span>created.
+&gt;&gt;&gt;&gt;<span class="w"> </span>Requesting<span class="w"> </span>greeting<span class="w"> </span><span class="k">for</span><span class="w"> </span>Michael
+&gt;&gt;&gt;&gt;<span class="w"> </span>Server<span class="w"> </span>answered<span class="w"> </span>--&gt;<span class="w"> </span>Hello,<span class="w"> </span>Michael!
+&gt;&gt;&gt;&gt;<span class="w"> </span>Requesting<span class="w"> </span>vector<span class="w"> </span>addition!
+&gt;&gt;&gt;&gt;<span class="w"> </span>Server<span class="w"> </span>vector<span class="w"> </span>addition<span class="w"> </span>successful!<span class="w"> </span>Retrieving<span class="w"> </span>vector.
+GRPCClient<span class="w"> </span>object<span class="w"> </span>destroyed.
+</pre></div>
+</div>
+<p>On the server side, you see these logs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;&gt;<span class="w"> </span>Greeting<span class="w"> </span>requested!<span class="w"> </span>Requested<span class="w"> </span>by<span class="w"> </span>Michael
+&gt;&gt;&gt;&gt;<span class="w"> </span>Vector<span class="w"> </span>addition<span class="w"> </span>requested!
+&gt;&gt;&gt;&gt;<span class="w"> </span>Incoming<span class="w"> </span>Vector:<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">2</span><span class="w">  </span><span class="m">3</span><span class="w"> </span><span class="m">50</span>
+&gt;&gt;&gt;&gt;<span class="w"> </span>Incoming<span class="w"> </span>Vector:<span class="w">  </span><span class="m">4</span><span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">10</span>
+&gt;&gt;&gt;&gt;<span class="w"> </span>Result<span class="w"> </span>of<span class="w"> </span>addition:<span class="w">  </span><span class="m">5</span><span class="w">  </span><span class="m">7</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="m">60</span>
+Enjoy<span class="w"> </span>creating<span class="w"> </span>your<span class="w"> </span>own<span class="w"> </span>apps!
+</pre></div>
+</div>
+<p>Enjoy creating your own apps.</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-api-eigen-example-python-module">Understanding the API Eigen Example Python module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-api-rest-eigen-example-python-module">The API REST Eigen Example Python module</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-api-grpc-eigen-example-python-module">The API gRPC Eigen Example Python module</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-the-api-eigen-example-c-module">Understanding the API Eigen Example C++ module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-api-rest-eigen-example-c-projects">The API REST Eigen Example C++ projects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-api-grpc-eigen-example-c-projects">The API gRPC Eigen Example C++ projects</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/users_guide/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../_static/search.json";
+</script>
+
+
+<script src="../_static/js/search.js"></script>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.2.4. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
