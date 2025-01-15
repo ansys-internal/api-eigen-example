@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>C++ REST service module &#8212; API Eigen Example</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/ansys_sphinx_theme.css?v=77703c5e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../../_static/documentation_options.js?v=f539c95a"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/cpp-grpc/service';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="C++ gRPC client module" href="client.html" />
+    <link rel="prev" title="C++ REST server module" href="server.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://www.ansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/ansys_logo_transparent_black.png" class="logo__image only-light" alt="API Eigen Example - Home"/>
+    <script>document.write(`<img src="../../_static/ansys_logo_transparent_white.png" class="logo__image only-dark" alt="API Eigen Example - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../users_guide/index.html">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../users_guide/index.html">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contributing.html">
+    Contributing
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../python-rest/index.html">Python REST subpackage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python-grpc/index.html">Python gRPC subpackage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp-rest/index.html">C++ REST subpackage</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">C++ gRPC subpackage</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="server.html">C++ REST server module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">C++ REST service module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="client.html">C++ gRPC client module</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="../index.html" class="nav-link">API reference</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a href="index.html" class="nav-link">C++ gRPC subpackage</a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">C++ REST service module</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="c-rest-service-module">
+<span id="ref-cpp-grpc-service"></span><h1>C++ REST service module<a class="headerlink" href="#c-rest-service-module" title="Link to this heading">#</a></h1>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7serviceE">
+<span id="_CPPv3N5ansys4grpc7serviceE"></span><span id="_CPPv2N5ansys4grpc7serviceE"></span><span id="ansys::grpc::service"></span><span class="target" id="namespaceansys_1_1grpc_1_1service"></span><span class="k"><span class="pre">namespace</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">service</span></span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7serviceE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Namespace including the API Eigen Example Server logic (i.e. service) implemented in C++. </p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCServiceE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCServiceE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCServiceE"></span><span id="ansys::grpc::service::GRPCService"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GRPCService</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">GRPCDemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Service</span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCServiceE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Class containing the server logic (i.e. service). </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService11GRPCServiceEKb">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService11GRPCServiceEKb"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService11GRPCServiceEKb"></span><span id="ansys::grpc::service::GRPCService::GRPCService__bC"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a5240cf80288f720a11ce02f1f5454991"></span><span class="sig-name descname"><span class="n"><span class="pre">GRPCService</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">debug_log</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService11GRPCServiceEKb" title="Link to this definition">#</a><br /></dt>
+<dd><p>Construct a new GRPCDemo Service object. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>debug_log</strong> – whether to show the enhanced debugging logs or not. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCServiceD0Ev">
+<span id="_CPPv3N5ansys4grpc7service11GRPCServiceD0Ev"></span><span id="_CPPv2N5ansys4grpc7service11GRPCServiceD0Ev"></span><span id="ansys::grpc::service::GRPCService::~GRPCService"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a355ba31da2e1358cf0c0f95990cab91f"></span><span class="sig-name descname"><span class="n"><span class="pre">~GRPCService</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCServiceD0Ev" title="Link to this definition">#</a><br /></dt>
+<dd><p>Destroy the GRPCDemo Service object. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService8SayHelloEPN4grpc13ServerContextEPKN8grpcdemo12HelloRequestEPN8grpcdemo10HelloReplyE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService8SayHelloEPN4grpc13ServerContextEPKN8grpcdemo12HelloRequestEPN8grpcdemo10HelloReplyE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService8SayHelloEPN4grpc13ServerContextEPKN8grpcdemo12HelloRequestEPN8grpcdemo10HelloReplyE"></span><span id="ansys::grpc::service::GRPCService::SayHello__grpc::ServerContextP.grpcdemo::HelloRequestCP.grpcdemo::HelloReplyP"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a0624ce93e01e7e84b147ed70211af208"></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SayHello</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">HelloRequest</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">request</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">HelloReply</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">response</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService8SayHelloEPN4grpc13ServerContextEPKN8grpcdemo12HelloRequestEPN8grpcdemo10HelloReplyE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method to provide a simple greeting to the client. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – the gRPC Server context. </p></li>
+<li><p><strong>request</strong> – the gRPC request. </p></li>
+<li><p><strong>response</strong> – the gRPC response this method will fill. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>::grpc::Status </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService10FlipVectorEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService10FlipVectorEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService10FlipVectorEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"></span><span id="ansys::grpc::service::GRPCService::FlipVector__grpc::ServerContextP.grpc::ServerReaderWriter:grpcdemo::Vector.grpcdemo::Vector:P"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1ac5ee9680483294ebfd3f9b2ba9cf0773"></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FlipVector</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService10FlipVectorEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method to provide a flipped vector to the client. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – the gRPC Server context. </p></li>
+<li><p><strong>stream</strong> – the gRPC stream. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>::grpc::Status </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService10AddVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService10AddVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService10AddVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"></span><span id="ansys::grpc::service::GRPCService::AddVectors__grpc::ServerContextP.grpc::ServerReaderWriter:grpcdemo::Vector.grpcdemo::Vector:P"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1ad9512b23f01b3c0aa11815a8c2881834"></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AddVectors</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService10AddVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method to provide the addition of Vector messages. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – the gRPC Server context. </p></li>
+<li><p><strong>stream</strong> – the gRPC stream. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>::grpc::Status </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService15MultiplyVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService15MultiplyVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService15MultiplyVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"></span><span id="ansys::grpc::service::GRPCService::MultiplyVectors__grpc::ServerContextP.grpc::ServerReaderWriter:grpcdemo::Vector.grpcdemo::Vector:P"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a61fcdd2bd827d81601295ce4242636a7"></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MultiplyVectors</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService15MultiplyVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method to provide the dot product of Vector messages. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – the gRPC Server context. </p></li>
+<li><p><strong>stream</strong> – the gRPC stream. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>::grpc::Status </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService11AddMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService11AddMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService11AddMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE"></span><span id="ansys::grpc::service::GRPCService::AddMatrices__grpc::ServerContextP.grpc::ServerReaderWriter:grpcdemo::Matrix.grpcdemo::Matrix:P"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a254d4b748b9fbf4a93b09efc80446dba"></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AddMatrices</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService11AddMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method to provide the addition of Matrix messages. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – the gRPC Server context. </p></li>
+<li><p><strong>stream</strong> – the gRPC stream. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>::grpc::Status </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService16MultiplyMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService16MultiplyMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService16MultiplyMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE"></span><span id="ansys::grpc::service::GRPCService::MultiplyMatrices__grpc::ServerContextP.grpc::ServerReaderWriter:grpcdemo::Matrix.grpcdemo::Matrix:P"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1ac8ad9d28de4e61a49d7b96d7a75b851f"></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MultiplyMatrices</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService16MultiplyMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method to provide the multiplication of Matrix messages. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>context</strong> – the gRPC Server context. </p></li>
+<li><p><strong>stream</strong> – the gRPC stream. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>::grpc::Status </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-functions">Private Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService18deserialize_vectorERKNSt6stringEKiN8grpcdemo8DataTypeE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService18deserialize_vectorERKNSt6stringEKiN8grpcdemo8DataTypeE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService18deserialize_vectorERKNSt6stringEKiN8grpcdemo8DataTypeE"></span><span id="ansys::grpc::service::GRPCService::deserialize_vector__ssCR.iC.grpcdemo::DataType"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1ab4c79f81852796b9527b6c2053e68f41"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">VectorXd</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deserialize_vector</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">bytes</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">length</span></span>, <span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService18deserialize_vectorERKNSt6stringEKiN8grpcdemo8DataTypeE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method used to deserialize a Vector message into an Eigen::VectorXd object. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bytes</strong> – the chunk of bytes from where the vector is deserialized. </p></li>
+<li><p><strong>length</strong> – the length of the vector we are deserializing. </p></li>
+<li><p><strong>type</strong> – the type of data inside the vector (e.g. double, int…). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Eigen::VectorXd </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService16serialize_vectorERKN5Eigen8VectorXdEKiKi">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService16serialize_vectorERKN5Eigen8VectorXdEKiKi"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService16serialize_vectorERKN5Eigen8VectorXdEKiKi"></span><span id="ansys::grpc::service::GRPCService::serialize_vector__Eigen::VectorXdCR.iC.iC"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a4f0fb91c74046d63c710eb0ece347bd6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">serialize_vector</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">VectorXd</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">vector</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService16serialize_vectorERKN5Eigen8VectorXdEKiKi" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method used to serialize an Eigen::VectorXd object into a Vector message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vector</strong> – the Eigen::VectorXd to be serialized. </p></li>
+<li><p><strong>start</strong> – the starting index to serialize. </p></li>
+<li><p><strong>end</strong> – the last index to serialize (not included). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>std::string </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService18deserialize_matrixERKNSt6stringEKiKiN8grpcdemo8DataTypeE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService18deserialize_matrixERKNSt6stringEKiKiN8grpcdemo8DataTypeE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService18deserialize_matrixERKNSt6stringEKiKiN8grpcdemo8DataTypeE"></span><span id="ansys::grpc::service::GRPCService::deserialize_matrix__ssCR.iC.iC.grpcdemo::DataType"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a05b32566d9d55954697d2f3570a6637f"></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MatrixXd</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">deserialize_matrix</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">bytes</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">rows</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cols</span></span>, <span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">DataType</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService18deserialize_matrixERKNSt6stringEKiKiN8grpcdemo8DataTypeE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method used to deserialize a Matrix message into an Eigen::MatrixXd object. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bytes</strong> – the chunk of bytes from where the matrix is deserialized. </p></li>
+<li><p><strong>rows</strong> – the number of rows of the matrix we are deserializing. </p></li>
+<li><p><strong>cols</strong> – the number of columns of the matrix we are deserializing. </p></li>
+<li><p><strong>type</strong> – the type of data inside the matrix (e.g. double, int…). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Eigen::MatrixXd </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService16serialize_matrixERKN5Eigen8MatrixXdEKiKi">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService16serialize_matrixERKN5Eigen8MatrixXdEKiKi"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService16serialize_matrixERKN5Eigen8MatrixXdEKiKi"></span><span id="ansys::grpc::service::GRPCService::serialize_matrix__Eigen::MatrixXdCR.iC.iC"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1ac39d0309b495c57b902ce47a40579736"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">serialize_matrix</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MatrixXd</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">matrix</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">start</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">end</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService16serialize_matrixERKN5Eigen8MatrixXdEKiKi" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method used to serialize an Eigen::MatrixXd object into a Matrix message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix</strong> – the Eigen::MatrixXd to be serialized. </p></li>
+<li><p><strong>start</strong> – the starting index to serialize. </p></li>
+<li><p><strong>end</strong> – the last index to serialize (not included). </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>std::string </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService15receive_vectorsEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService15receive_vectorsEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService15receive_vectorsEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextE"></span><span id="ansys::grpc::service::GRPCService::receive_vectors__grpc::ServerReaderWriter:grpcdemo::Vector.grpcdemo::Vector:P.grpc::ServerContextP"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a97a59976379a0e1be283330b69efa441"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">VectorXd</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">receive_vectors</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">reader_writer</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService15receive_vectorsEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method in charge of providing a set of Eigen::VectorXd objects from a stream of Vector messages. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reader_writer</strong> – the gRPC reader-writer in the bidirectional stream protocol. </p></li>
+<li><p><strong>context</strong> – the gRPC context. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>std::vector&lt;Eigen::VectorXd&gt; </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService16receive_matricesEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService16receive_matricesEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService16receive_matricesEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextE"></span><span id="ansys::grpc::service::GRPCService::receive_matrices__grpc::ServerReaderWriter:grpcdemo::Matrix.grpcdemo::Matrix:P.grpc::ServerContextP"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a56ffad0fb26374ee1c6c267faff8883b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MatrixXd</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">receive_matrices</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">reader_writer</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService16receive_matricesEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method in charge of providing a set of Eigen::MatrixXd objects from a stream of Matrix messages. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reader_writer</strong> – the gRPC reader-writer in the bidirectional stream protocol. </p></li>
+<li><p><strong>context</strong> – the gRPC context. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>std::vector&lt;Eigen::MatrixXd&gt; </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService11send_vectorEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextERKN5Eigen8VectorXdE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService11send_vectorEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextERKN5Eigen8VectorXdE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService11send_vectorEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextERKN5Eigen8VectorXdE"></span><span id="ansys::grpc::service::GRPCService::send_vector__grpc::ServerReaderWriter:grpcdemo::Vector.grpcdemo::Vector:P.grpc::ServerContextP.Eigen::VectorXdCR"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1ac39a24e53841eeddbdbae45ae2a1fecf"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">send_vector</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Vector</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">reader_writer</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">VectorXd</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">vector</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService11send_vectorEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextERKN5Eigen8VectorXdE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method in charge of sending the resulting vector of the operation through the protocol. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reader_writer</strong> – the gRPC reader-writer in the bidirectional stream protocol. </p></li>
+<li><p><strong>context</strong> – the gRPC context. </p></li>
+<li><p><strong>vector</strong> – the vector to be sent. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService11send_matrixEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextERKN5Eigen8MatrixXdE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService11send_matrixEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextERKN5Eigen8MatrixXdE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService11send_matrixEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextERKN5Eigen8MatrixXdE"></span><span id="ansys::grpc::service::GRPCService::send_matrix__grpc::ServerReaderWriter:grpcdemo::Matrix.grpcdemo::Matrix:P.grpc::ServerContextP.Eigen::MatrixXdCR"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a03b455dadf546e571244fd86d43efd15"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">send_matrix</span></span></span><span class="sig-paren">(</span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerReaderWriter</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">grpcdemo</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Matrix</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">reader_writer</span></span>, <span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">grpc</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServerContext</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">context</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Eigen</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MatrixXd</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">matrix</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService11send_matrixEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextERKN5Eigen8MatrixXdE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Method in charge of sending the resulting matrix of the operation through the protocol. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reader_writer</strong> – the gRPC reader-writer in the bidirectional stream protocol. </p></li>
+<li><p><strong>context</strong> – the gRPC context. </p></li>
+<li><p><strong>matrix</strong> – the matrix to be sent. </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-private-members">Private Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N5ansys4grpc7service11GRPCService10_debug_logE">
+<span id="_CPPv3N5ansys4grpc7service11GRPCService10_debug_logE"></span><span id="_CPPv2N5ansys4grpc7service11GRPCService10_debug_logE"></span><span id="ansys::grpc::service::GRPCService::_debug_log__b"></span><span class="target" id="classansys_1_1grpc_1_1service_1_1GRPCService_1a267a4edc2cdc8f952ef1e62dcd5bdbe7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_debug_log</span></span></span><a class="headerlink" href="#_CPPv4N5ansys4grpc7service11GRPCService10_debug_logE" title="Link to this definition">#</a><br /></dt>
+<dd><p>Boolean indicating whether to show the debugging logs or not. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7serviceE"><code class="docutils literal notranslate"><span class="pre">service</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCServiceE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService11GRPCServiceEKb"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::GRPCService()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCServiceD0Ev"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::~GRPCService()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService8SayHelloEPN4grpc13ServerContextEPKN8grpcdemo12HelloRequestEPN8grpcdemo10HelloReplyE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::SayHello()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService10FlipVectorEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::FlipVector()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService10AddVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::AddVectors()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService15MultiplyVectorsEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::MultiplyVectors()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService11AddMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::AddMatrices()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService16MultiplyMatricesEPN4grpc13ServerContextEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::MultiplyMatrices()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService18deserialize_vectorERKNSt6stringEKiN8grpcdemo8DataTypeE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::deserialize_vector()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService16serialize_vectorERKN5Eigen8VectorXdEKiKi"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::serialize_vector()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService18deserialize_matrixERKNSt6stringEKiKiN8grpcdemo8DataTypeE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::deserialize_matrix()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService16serialize_matrixERKN5Eigen8MatrixXdEKiKi"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::serialize_matrix()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService15receive_vectorsEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::receive_vectors()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService16receive_matricesEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::receive_matrices()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService11send_vectorEPN4grpc18ServerReaderWriterIN8grpcdemo6VectorEN8grpcdemo6VectorEEEPN4grpc13ServerContextERKN5Eigen8VectorXdE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::send_vector()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService11send_matrixEPN4grpc18ServerReaderWriterIN8grpcdemo6MatrixEN8grpcdemo6MatrixEEEPN4grpc13ServerContextERKN5Eigen8MatrixXdE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::send_matrix()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#_CPPv4N5ansys4grpc7service11GRPCService10_debug_logE"><code class="docutils literal notranslate"><span class="pre">service::GRPCService::_debug_log</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/api/cpp-grpc/service.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../../_static/search.json";
+</script>
+
+
+<script src="../../_static/js/search.js"></script>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.2.4. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

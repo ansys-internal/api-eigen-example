@@ -1,0 +1,835 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Getting started &#8212; API Eigen Example</title>
+  
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css?v=77703c5e" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.nerdfonts.com/assets/css/webfont.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  
+    <link href="../_static/css/breadcrumbs.css" rel="stylesheet" />
+  
+    <script src="../_static/documentation_options.js?v=f539c95a"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=49e1bf35"></script>
+    <script src="../_static/js/table.js?v=b64f5182"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/index';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User’s guide" href="../users_guide/index.html" />
+    <link rel="prev" title="API Eigen Example Documentation 0.0.1" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="https://www.ansys.com/">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/ansys_logo_transparent_black.png" class="logo__image only-light" alt="API Eigen Example - Home"/>
+    <script>document.write(`<img src="../_static/ansys_logo_transparent_white.png" class="logo__image only-dark" alt="API Eigen Example - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../users_guide/index.html">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<div class="search-bar pst-js-only" id="search-bar">
+  <form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="search" class="form-control" name="q" placeholder="Search the docs ..."
+      aria-label="Search the docs ..." autocomplete="off" autocorrect="off"
+      autocapitalize="off" spellcheck="false" />
+    <span class="search-button__kbd-shortcut">
+      <kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd>
+    </span>
+  </form>
+  <div id="static-search-results" class="static-search-results" style="display:none;" tabindex="0"></div>
+</div>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+  
+
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../users_guide/index.html">
+    User’s guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../api/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../docker/index.html">
+    Docker examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../benchmark/index.html">
+    Benchmark results
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../contributing.html">
+    Contributing
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/ansys/api-eigen-example" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+         
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="https://docs.pyansys.com/" class="nav-link">PyAnsys</a>
+    </li>
+     
+    <li class="breadcrumb-item">
+      <a
+        href="../index.html"
+        class="nav-link"
+        aria-label="Home"
+      >
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+      
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Getting started</span></li>
+    
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="getting-started">
+<span id="id1"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h1>
+<p>The API Eigen example package is a simple project for showing PyAnsys
+users and developers the differences between the API REST communication protocol
+and the gRPC communication protocol that is used extensively in PyAnsys libraries.</p>
+<p>This project has multiple language implementations.</p>
+<section id="api-eigen-example-python-project">
+<h2>API Eigen Example Python project<a class="headerlink" href="#api-eigen-example-python-project" title="Link to this heading">#</a></h2>
+<p>To use the API Eigen Example project in its Python version, you do not need any specific requirements or
+additional software, apart from the ones that are installed via the requirements <code class="docutils literal notranslate"><span class="pre">--all-files</span></code>
+and a CMake version of the Eigen library.</p>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h3>
+<p>First install the Eigen library (and CMake if it is not present). For Ubuntu distributions, it is as
+easy as running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cmake<span class="w"> </span>libeigen3-dev
+</pre></div>
+</div>
+<p>To install a local version of the API Eigen Example project, clone the <a class="reference external" href="https://github.com/ansys/api-eigen-example">repository</a>
+through the Ansys GitHub Enterprise account:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ansys/api-eigen-example.git
+</pre></div>
+</div>
+<p>If you want to use Python versions of the API Eigen Example project, install the
+demo-eigen-wrapper, which is a wrapper to the Eigen library that uses pybind11:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/requirements_eigen_wrapper.txt<span class="w"> </span>./src/ansys/eigen/cpp/eigen-wrapper
+</pre></div>
+</div>
+<p>Finally, install the project with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/requirements_build.txt<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="starting-to-use-the-project">
+<h3>Starting to use the project<a class="headerlink" href="#starting-to-use-the-project" title="Link to this heading">#</a></h3>
+<p>Once the API Eigen Example project has been installed, start to make use of the Python
+packages by importing them:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">ansys.eigen.python.rest.server</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rest_server</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">ansys.eigen.python.rest.client</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">rest_client</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">rest_client</span><span class="o">.</span><span class="n">DemoRESTClient</span><span class="p">(</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">get_connection_details</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For more examples, see the <a class="reference internal" href="../users_guide/index.html#user-guide"><span class="std std-ref">User’s guide</span></a>.</p>
+</section>
+</section>
+<section id="api-eigen-example-c-project">
+<h2>API Eigen Example C++ project<a class="headerlink" href="#api-eigen-example-c-project" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>Installation<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>To use the API Eigen Example C++ projects, the installation process is a bit more cumbersome.
+First install the packaged library <code class="docutils literal notranslate"><span class="pre">cmake</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>cmake
+</pre></div>
+</div>
+<p>Depending on the C++ project, dependencies vary. Go to your sections of interest from those that follow.</p>
+<section id="installation-of-the-c-rest-server">
+<h4>Installation of the C++ REST Server<a class="headerlink" href="#installation-of-the-c-rest-server" title="Link to this heading">#</a></h4>
+<p>Installing the C++ REST server manually is a simple process. Run the following commands from
+the root of the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements/requirements_build.txt<span class="w"> </span>.
+<span class="nb">cd</span><span class="w"> </span>src/ansys/eigen/cpp/rest/server/build/
+conan<span class="w"> </span>install<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>Once dependencies are installed, you can use the C++ REST server. Start writing your own C++ <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> file and
+include the project header files as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/rest/RestServer.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// Let us instantiate our server</span>
+<span class="w">   </span><span class="n">ansys</span><span class="o">::</span><span class="n">rest</span><span class="o">::</span><span class="n">server</span><span class="o">::</span><span class="n">RestServer</span><span class="w"> </span><span class="n">server</span><span class="p">{};</span>
+
+<span class="w">   </span><span class="c1">// Start serving!</span>
+<span class="w">   </span><span class="n">server</span><span class="p">.</span><span class="n">serve</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For compiling, link the library with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myServer<span class="w"> </span>main.cpp<span class="w"> </span>-lapieigen_example_rest_server
+</pre></div>
+</div>
+<p>You can run your server with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myServer
+</pre></div>
+</div>
+</section>
+<section id="installation-of-the-c-rest-client">
+<h4>Installation of the C++ REST Client<a class="headerlink" href="#installation-of-the-c-rest-client" title="Link to this heading">#</a></h4>
+<p>Installing the C++ REST client manually is a bit more complex. You must install some
+development libraries and compile in place some additional external libraries.</p>
+<p>First, install a <code class="docutils literal notranslate"><span class="pre">dev</span></code> version of <code class="docutils literal notranslate"><span class="pre">libcurl</span></code>. Using the Ubuntu package manager <code class="docutils literal notranslate"><span class="pre">apt</span></code>, you can run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libcurl4-openssl-dev
+</pre></div>
+</div>
+<p>Once <code class="docutils literal notranslate"><span class="pre">libcurl-dev</span></code> is installed, you must compile some external projects. These external projects have
+been frozen at a given version within this repository. You can find them in the <code class="docutils literal notranslate"><span class="pre">external</span></code> folder.</p>
+<p>To install them, run these commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libcurl4-openssl-dev<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>external/restclient-cpp-v0.5.2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./autogen.sh<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./configure<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>-
+sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>external/jsoncpp-v1.9.5/build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>-DCMAKE_INSTALL_INCLUDEDIR<span class="o">=</span>include/jsoncpp<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>-
+</pre></div>
+</div>
+<p>Once dependencies are installed, you can build and install the client library with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>src/ansys/eigen/cpp/rest/client/build/<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>-
+</pre></div>
+</div>
+<p>You can use the REST C++ Client library. Start writing your own C++ <code class="docutils literal notranslate"><span class="pre">client.cpp</span></code> file and
+include the project header files as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/rest/EigenClient.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Deploying the client</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Instantiate an EigenClient</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ansys</span><span class="o">::</span><span class="n">rest</span><span class="o">::</span><span class="n">client</span><span class="o">::</span><span class="n">EigenClient</span><span class="p">(</span><span class="s">&quot;http://0.0.0.0:18080&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// REQUESTING GREETING - A.K.A &quot;Hello World&quot;</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Let us request a greeting!</span>
+<span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">request_greeting</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Exit successfully</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For compiling, link the library as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myClientApp<span class="w"> </span>client.cpp<span class="w"> </span>-lapieigen_example_rest_client
+</pre></div>
+</div>
+<p>You can run your client app with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myClientApp
+</pre></div>
+</div>
+</section>
+<section id="installation-of-the-c-grpc-server">
+<h4>Installation of the C++ gRPC Server<a class="headerlink" href="#installation-of-the-c-grpc-server" title="Link to this heading">#</a></h4>
+<p>Installing the C++ gRPC server manually is a simple process. To use the <a class="reference external" href="https://conan.io/">conan</a> package manager
+to install dependencies, run the following command lines from the root of the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>src/ansys/eigen/cpp/grpc/server/
+make<span class="w"> </span>compile<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./deploy_dependencies.sh
+</pre></div>
+</div>
+<p>You might need to run the previous <code class="docutils literal notranslate"><span class="pre">install</span></code> and <code class="docutils literal notranslate"><span class="pre">deploy</span></code> commands with root privileges.</p>
+<p>Once dependencies are installed, you can use the C++ gRPC server. Start writing your own C++ <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> file and
+include the project header files as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/grpc/GRPCServer.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="c1">// Let us instantiate our server</span>
+<span class="w">   </span><span class="n">ansys</span><span class="o">::</span><span class="n">grpc</span><span class="o">::</span><span class="n">server</span><span class="o">::</span><span class="n">GRPCServer</span><span class="w"> </span><span class="n">server</span><span class="p">{};</span>
+
+<span class="w">   </span><span class="c1">// Start serving!</span>
+<span class="w">   </span><span class="n">server</span><span class="p">.</span><span class="n">serve</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For compiling, link the library as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myServer<span class="w"> </span>main.cpp<span class="w"> </span>-lapi_eigen_example_grpc_server
+</pre></div>
+</div>
+<p>You can run your server with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myServer
+</pre></div>
+</div>
+</section>
+<section id="installation-of-the-c-grpc-client">
+<h4>Installation of the C++ gRPC Client<a class="headerlink" href="#installation-of-the-c-grpc-client" title="Link to this heading">#</a></h4>
+<p>Installing the C++ gRPC client manually is a simple process. To use the <a class="reference external" href="https://conan.io/">conan</a>
+package manager to install dependencies, run the following commands from the root of the repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>src/ansys/eigen/cpp/grpc/client/
+make<span class="w"> </span>compile<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./deploy_dependencies.sh
+</pre></div>
+</div>
+<p>You might need to run the previous <code class="docutils literal notranslate"><span class="pre">install</span></code> and <code class="docutils literal notranslate"><span class="pre">deploy</span></code> commands with root privileges.</p>
+<p>Once dependencies are installed, you can use the C++ gRPC client. Start writing your own C++ <code class="docutils literal notranslate"><span class="pre">main.cpp</span></code> file and
+include the project header files as follows:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;apieigen/grpc/GRPCClient.hpp&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Deploying the client</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Instantiate a GRPCClient</span>
+<span class="w">    </span><span class="n">ansys</span><span class="o">::</span><span class="n">grpc</span><span class="o">::</span><span class="n">client</span><span class="o">::</span><span class="n">GRPCClient</span><span class="w"> </span><span class="n">client</span><span class="p">{</span><span class="s">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">50000</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// REQUESTING GREETING - A.K.A &quot;Hello World&quot;</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Let us request a greeting!</span>
+<span class="w">    </span><span class="n">client</span><span class="p">.</span><span class="n">request_greeting</span><span class="p">(</span><span class="s">&quot;Michael&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Performing vector operations</span>
+<span class="w">    </span><span class="c1">// ------------------------------------------------------------------------</span>
+<span class="w">    </span><span class="c1">// Let us create some reference vectors</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">50.0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">{</span><span class="mf">4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w"> </span><span class="mf">10.0</span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// Let us add them</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="n">add_vectors</span><span class="p">(</span><span class="n">vec1</span><span class="p">,</span><span class="w"> </span><span class="n">vec2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Exit successfully</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For compiling, link the library as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-o<span class="w"> </span>myClientApp<span class="w"> </span>main.cpp<span class="w"> </span>-lapi_eigen_example_grpc_client
+</pre></div>
+</div>
+<p>You can run your client with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./myClientApp
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-eigen-example-python-project">API Eigen Example Python project</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-to-use-the-project">Starting to use the project</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api-eigen-example-c-project">API Eigen Example C++ project</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Installation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-of-the-c-rest-server">Installation of the C++ REST Server</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-of-the-c-rest-client">Installation of the C++ REST Client</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-of-the-c-grpc-server">Installation of the C++ gRPC Server</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-of-the-c-grpc-client">Installation of the C++ gRPC Client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+<!-- If there is no fix edit button function, use the PyData edit-this-button-->
+</div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../_sources/getting_started/index.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+<link rel="stylesheet" href="../_static/css/fuse-search.css">
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.7/require.min.js"></script>
+
+<script>
+// Passing the search options to the search.js file
+const SEARCH_OPTIONS = JSON.parse('{"keys": ["title", "text"], "limit": 10, "threshold": 0.2}');
+const SEARCH_FILE = "../_static/search.json";
+</script>
+
+
+<script src="../_static/js/search.js"></script>
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright (c) 2025 ANSYS, Inc. All rights reserved.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the
+  <a href="https://sphinxdocs.ansys.com/version/stable/index.html"
+    >Ansys Sphinx Theme</a
+  >
+  1.2.4. <br />Last updated on
+  <span id="ast_build_date"></span>
+</p>
+<script>
+  var options = { day: "numeric", month: "long", year: "numeric" };
+  var ast_lastModifiedDate = new Date(document.lastModified);
+  var ast_build_date = lastModifiedDate.toLocaleDateString("en-US", options);
+  document.getElementById("ast_build_date").innerHTML = ast_build_date;
+</script></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

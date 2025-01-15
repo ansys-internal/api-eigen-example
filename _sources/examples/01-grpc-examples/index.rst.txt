@@ -1,0 +1,45 @@
+
+
+.. _sphx_glr_examples_01-grpc-examples:
+
+API Eigen Example - gRPC Demo
+=============================
+These examples demonstrate full examples of API gRPC interaction between a server and a client.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial shows how you can use the Python gRPC Client of the API Eigen Example project to communicate with the gRPC Server.">
+
+.. only:: html
+
+  .. image:: /examples/01-grpc-examples/images/thumb/sphx_glr_python_grpc_demo_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_examples_01-grpc-examples_python_grpc_demo.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">API Eigen Example - gRPC Demo using Python</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/01-grpc-examples/python_grpc_demo
+
